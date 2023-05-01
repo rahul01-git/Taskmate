@@ -15,7 +15,7 @@ export default function AddTask({ tasklist, setTasklist, task, setTask }) {
           : todo
       );
       setTasklist(updatedTasklist)
-      setTask
+      setTask({})
     } else {
       const date = new Date();
       const newTask = {
@@ -25,7 +25,7 @@ export default function AddTask({ tasklist, setTasklist, task, setTask }) {
       };
 
       setTasklist([...tasklist, newTask]);
-      e.target.task.value = "";
+      setTask({})
     }
   };
   return (
@@ -37,7 +37,7 @@ export default function AddTask({ tasklist, setTasklist, task, setTask }) {
           name="task"
           autoComplete="off"
           maxLength="25"
-          value={task.name} onChange={e=>setTask({...task,name:e.target.value})}
+          value={task.name || ''} onChange={e=>setTask({...task,name:e.target.value})}
         />
         <button type="submit">Add</button>
       </form>
